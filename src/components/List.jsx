@@ -20,6 +20,8 @@ const Title = styled.h3`
 `
 
 const TaskList = styled.div`
+  dispay: flex;
+  flex-direction: column;
   padding: 4px;
   margin: 4px;
   min-height: 200px;

@@ -3,7 +3,7 @@ const data = {
     'task-1': { id: 'task-1', content: 'A task'},
     'task-2': { id: 'task-2', content: 'Another task'},
     'task-3': { id: 'task-3', content: 'Is my work ever done?'},
-    'task-4': { id: 'task-4', content: 'Idle hands etc...'},
+    'task-4': { id: 'task-4', content: 'Idle hands etc... type some rubbish here so we can test longer strings'},
   },
 
   lists: {
