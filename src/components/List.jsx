@@ -25,7 +25,7 @@ const TaskList = styled.div`
   padding: 4px;
   margin: 4px;
   min-height: 200px;
-  background-color: ${props => (props.isDraggingOver ? 'whitesmoke' : 'white')}
+  background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
 export default function List({listId, taskOrder, index}) {
@@ -36,7 +36,7 @@ export default function List({listId, taskOrder, index}) {
       {(provided, snapshot) => 
         <Container 
           ref={provided.innerRef}
-          isDraggingOver={snapshot.isDraggingOver} 
+          $isDraggingOver={snapshot.isDraggingOver} 
           {...provided.draggableProps}
         >
           <Title {...provided.dragHandleProps}>{list.title}</Title>
@@ -44,7 +44,7 @@ export default function List({listId, taskOrder, index}) {
             {(provided, snapshot) => 
               <TaskList 
                 ref={provided.innerRef}
-                isDraggingOver={snapshot.isDraggingOver} 
+                $isDraggingOver={snapshot.isDraggingOver} 
                 {...provided.droppableProps}
               >
                 {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}

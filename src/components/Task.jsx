@@ -16,7 +16,7 @@ const Container = styled.div`
   &:hover .hidden {
     display: block;
   }
-  background-color: ${props => (props.isDragging ? 'whitesmoke' : 'white')}
+  background-color: ${props => (props.$isDragging ? 'whitesmoke' : 'white')}
 `
 
 const ButtonWrapper = styled.div`
@@ -47,7 +47,7 @@ export default function Task({taskId, index}) {
       {(provided, snapshot) => 
         <Container 
           ref={provided.innerRef}
-          isDragging={snapshot.isDragging}
+          $isDragging={snapshot.isDragging}
           {...provided.draggableProps} 
           {...provided.dragHandleProps}
         >
