@@ -16,12 +16,13 @@ const Button = styled.button`
     cursor: pointer;
   }
   display: none;
+  ${props => props.$style}
 `
 
-export default function HiddenButton({icon, width, height, onClick}) {
+export default function HiddenButton({icon, width, height, style = ``, onClick}) {
   return (
   <ButtonWrapper>
-    <Button className="hidden"><img src={icon} width={width} height={height} onClick={onClick}/></Button>
+    <Button className="hidden" $style={style}><img src={icon} width={width} height={height} onClick={onClick}/></Button>
   </ButtonWrapper>
   )
 }

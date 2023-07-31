@@ -20,11 +20,12 @@ const Title = styled.h3`
   padding: 8px;
   border-bottom: 1px solid lightgrey;
   &:hover {
-    background-color: whitesmoke;
+    background-color: lightgrey;
   }
   &:hover .hidden {
     display: block;
   }
+  background-color: ${props => (props.$isDragging ? 'lightgrey' : 'white')}
 `
 
 const TaskList = styled.div`
@@ -34,6 +35,13 @@ const TaskList = styled.div`
   margin: 4px;
   min-height: 200px;
   background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
+`
+
+const hiddenButtonStyleOverride = `
+  opacity: 35%;
+  &:hover {
+    background-color: lightgrey;
+  }
 `
 
 export default function List({listId, taskOrder, index}) {
@@ -51,8 +59,12 @@ export default function List({listId, taskOrder, index}) {
           $isDraggingOver={snapshot.isDraggingOver} 
           {...provided.draggableProps}
         >
-          <Title {...provided.dragHandleProps}>{list.title}
-          <HiddenButton icon={editIcon} width={25} height={25} onClick={editList}/>
+          <Title 
+            {...provided.dragHandleProps}
+            $isDragging={snapshot.isDragging}
+          >
+            {list.title}
+            <HiddenButton icon={editIcon} width={27} height={27} style={hiddenButtonStyleOverride} onClick={editList}/>
           </Title>
           <Droppable droppableId={listId} type='task'>
             {(provided, snapshot) => 
