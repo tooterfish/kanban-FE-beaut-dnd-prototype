@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import data from '../data'
 import styled from 'styled-components'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import Task from './Task'
 
 const Container = styled.div`
@@ -14,17 +15,23 @@ const Title = styled.h3`
 
 const TaskList = styled.div`
   padding: 8px;
+  border: 1px solid black;
 `
 
-export default function List({listId}) {
+export default function List({listId, taskOrder, index}) {
   const [list, setList] = useState(data.lists[listId])
-
+  
   return (
     <Container>
       <Title>{list.title}</Title>
-      <TaskList>
-        {list.taskOrder.map((taskId) => { return <Task key={taskId} taskId={taskId}/>})}
-      </TaskList>
+      <Droppable droppableId={listId} type='task'>
+        {(provided) => 
+          <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+            {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
+            {provided.placeholder}
+          </TaskList>
+        }
+      </Droppable>
     </Container>
   )
 }

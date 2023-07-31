@@ -9,19 +9,22 @@ const data = {
   lists: {
     'list-1': {
       id: 'list-1',
-      title: 'To do',
-      taskOrder: ['task-1', 'task-2', 'task-3', 'task-4']
+      title: 'To do'
     },
     'list-2': {
       id: 'list-2',
-      title: 'In progress',
-      taskOrder: []
+      title: 'In progress'
     },
     'list-3': {
       id: 'list-3',
-      title: 'Done',
-      taskOrder: []
+      title: 'Done'
     }
+  },
+
+  taskOrders: {
+    'list-1': ['task-1', 'task-2', 'task-3', 'task-4'],
+    'list-2': [],
+    'list-3': []
   },
 
   listOrder: ['list-1', 'list-2', 'list-3']
