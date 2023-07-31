@@ -35,14 +35,24 @@ export default function Board() {
       setTaskOrders(newTaskOrders)
     }
 
+    if (type === 'list') {
+      const newListOrder = [...listOrder]
+
+      newListOrder.splice(source.index, 1)
+      newListOrder.splice(destination.index, 0, draggableId)
+
+      setListOrder(newListOrder)
+    }
+
   }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId='board' type='list'>
+      <Droppable droppableId='lists' type='list' direction='horizontal'>
         {(provided) => 
           <Container ref={provided.innerRef} {...provided.droppableProps}>
             {listOrder.map((listId, i) => { return <List key={listId} listId={listId} taskOrder={taskOrders[listId]} index={i}/>})}
+            {provided.placeholder}
           </Container>
         }
       </Droppable>

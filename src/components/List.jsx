@@ -20,18 +20,22 @@ const TaskList = styled.div`
 
 export default function List({listId, taskOrder, index}) {
   const [list, setList] = useState(data.lists[listId])
-  
+
   return (
-    <Container>
-      <Title>{list.title}</Title>
-      <Droppable droppableId={listId} type='task'>
-        {(provided) => 
-          <TaskList ref={provided.innerRef} {...provided.droppableProps}>
-            {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
-            {provided.placeholder}
-          </TaskList>
-        }
-      </Droppable>
-    </Container>
+    <Draggable draggableId={listId} index={index}>
+      {(provided) => 
+        <Container ref={provided.innerRef} {...provided.draggableProps}>
+          <Title {...provided.dragHandleProps}>{list.title}</Title>
+          <Droppable droppableId={listId} type='task'>
+            {(provided) => 
+              <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+                {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
+                {provided.placeholder}
+              </TaskList>
+            }
+          </Droppable>
+        </Container>
+      }
+    </Draggable>
   )
 }
