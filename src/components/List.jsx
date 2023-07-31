@@ -5,6 +5,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import Task from './Task'
 
 import editIcon from '../assets/edit-box-line.svg'
+import HiddenButton from './HiddenButton'
 
 const Container = styled.div`
   margin: 8px;
@@ -35,29 +36,12 @@ const TaskList = styled.div`
   background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
-
-const Button = styled.button`
-  all: unset;
-  width: 20px;
-  height: 20px;
-  position: fixed;
-  transform: translate(0px, -22px);
-  opacity: 20%;
-  &:hover {
-    opacity: 100%;
-    background-color: whitesmoke;
-    cursor: pointer;
-  }
-  display: none;
-`
-
-
 export default function List({listId, taskOrder, index}) {
   const [list, setList] = useState(data.lists[listId])
+
+  function editList() {
+    console.log('edit list ' + listId)
+  }
 
   return (
     <Draggable draggableId={listId} index={index}>
@@ -68,9 +52,7 @@ export default function List({listId, taskOrder, index}) {
           {...provided.draggableProps}
         >
           <Title {...provided.dragHandleProps}>{list.title}
-          <ButtonWrapper>
-            <Button className="hidden"><img src={editIcon} width='25' height='25'/></Button>
-          </ButtonWrapper>
+          <HiddenButton icon={editIcon} width={25} height={25} onClick={editList}/>
           </Title>
           <Droppable droppableId={listId} type='task'>
             {(provided, snapshot) => 

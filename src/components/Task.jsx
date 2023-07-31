@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 import { Draggable } from 'react-beautiful-dnd'
 
 import editIcon from '../assets/edit-box-line.svg'
+import HiddenButton from './HiddenButton'
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -19,28 +20,12 @@ const Container = styled.div`
   background-color: ${props => (props.$isDragging ? 'whitesmoke' : 'white')}
 `
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`
-
-const Button = styled.button`
-  all: unset;
-  width: 20px;
-  height: 20px;
-  position: fixed;
-  transform: translate(0px, -22px);
-  opacity: 20%;
-  &:hover {
-    opacity: 100%;
-    background-color: whitesmoke;
-    cursor: pointer;
-  }
-  display: none;
-`
-
 export default function Task({taskId, index}) {
   const [task, setTask] = useState(data.tasks[taskId])
+
+  function editTask(e) {
+    console.log('edit task ' + taskId)
+  }
 
   return (
     <Draggable draggableId={taskId} index={index}>
@@ -52,9 +37,7 @@ export default function Task({taskId, index}) {
           {...provided.dragHandleProps}
         >
           {task.content}
-          <ButtonWrapper>
-            <Button className="hidden"><img src={editIcon} width='25' height='25'/></Button>
-          </ButtonWrapper>
+          <HiddenButton icon={editIcon} width={25} height={25} onClick={editTask}/>
         </Container>
       }
     </Draggable>
