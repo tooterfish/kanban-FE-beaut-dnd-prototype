@@ -33,7 +33,7 @@ const TaskList = styled.div`
   flex-direction: column;
   padding: 4px;
   margin: 4px;
-  min-height: 200px;
+  min-height: 300px;
   background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
