@@ -7,6 +7,9 @@ import Task from './Task'
 const Container = styled.div`
   margin: 8px;
   border: 1px solid lightgrey;
+  background: white;
+  width: 200px;
+  flex-direction: column;
 `
 
 const Title = styled.h3`
@@ -15,7 +18,8 @@ const Title = styled.h3`
 
 const TaskList = styled.div`
   padding: 8px;
-  border: 1px solid black;
+  min-height: 200px;
+  // border: 1px solid black;
 `
 
 export default function List({listId, taskOrder, index}) {
