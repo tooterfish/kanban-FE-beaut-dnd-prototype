@@ -7,7 +7,8 @@ const Container = styled.div`
   border: 1px solid lightgrey;
   padding: 8px;
   margin-bottom: 8px;
-  background: white;
+  background-color: white;
+  box-sizing: border-box;
 `
 
 export default function Task({taskId, index}) {
@@ -15,9 +16,14 @@ export default function Task({taskId, index}) {
 
   return (
     <Draggable draggableId={taskId} index={index}>
-      {(provided) => 
-        <Container ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-        {task.content}
+      {(provided, snapshot) => 
+        <Container 
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+          {...provided.draggableProps} 
+          {...provided.dragHandleProps}
+        >
+          {task.content}
         </Container>
       }
     </Draggable>

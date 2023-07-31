@@ -17,9 +17,10 @@ const Title = styled.h3`
 `
 
 const TaskList = styled.div`
-  padding: 8px;
+  padding: 4px;
+  margin: 4px;
   min-height: 200px;
-  // border: 1px solid black;
+  background-color: ${props => (props.isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
 export default function List({listId, taskOrder, index}) {
@@ -27,12 +28,20 @@ export default function List({listId, taskOrder, index}) {
 
   return (
     <Draggable draggableId={listId} index={index}>
-      {(provided) => 
-        <Container ref={provided.innerRef} {...provided.draggableProps}>
+      {(provided, snapshot) => 
+        <Container 
+          ref={provided.innerRef}
+          isDraggingOver={snapshot.isDraggingOver} 
+          {...provided.draggableProps}
+        >
           <Title {...provided.dragHandleProps}>{list.title}</Title>
           <Droppable droppableId={listId} type='task'>
-            {(provided) => 
-              <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+            {(provided, snapshot) => 
+              <TaskList 
+                ref={provided.innerRef}
+                isDraggingOver={snapshot.isDraggingOver} 
+                {...provided.droppableProps}
+              >
                 {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
                 {provided.placeholder}
               </TaskList>
