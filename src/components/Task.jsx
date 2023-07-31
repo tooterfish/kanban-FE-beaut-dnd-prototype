@@ -13,8 +13,10 @@ const Container = styled.div`
   &:hover {
     background-color: whitesmoke;
   }
+  &:hover .hidden {
+    display: block;
+  }
   background-color: ${props => (props.isDragging ? 'whitesmoke' : 'white')}
-
 `
 
 const ButtonWrapper = styled.div`
@@ -28,13 +30,13 @@ const Button = styled.button`
   height: 20px;
   position: fixed;
   transform: translate(0px, -22px);
-  opacity: 15%;
+  opacity: 20%;
   &:hover {
     opacity: 100%;
     background-color: whitesmoke;
     cursor: pointer;
   }
-
+  display: none;
 `
 
 export default function Task({taskId, index}) {
@@ -51,7 +53,7 @@ export default function Task({taskId, index}) {
         >
           {task.content}
           <ButtonWrapper>
-            <Button><img src={editIcon} width='25' height='25'/></Button>
+            <Button className="hidden"><img src={editIcon} width='25' height='25'/></Button>
           </ButtonWrapper>
         </Container>
       }
