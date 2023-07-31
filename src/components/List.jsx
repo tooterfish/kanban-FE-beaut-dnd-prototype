@@ -13,7 +13,10 @@ const Container = styled.div`
 `
 
 const Title = styled.h3`
+  margin: 0px;
+  margin-top: 4px;
   padding: 8px;
+  border-bottom: 1px solid lightgrey;
 `
 
 const TaskList = styled.div`
