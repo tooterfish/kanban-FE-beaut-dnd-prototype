@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 const Container = styled.div`
   display: flex;
+  min-height: 100vh;
 `
 
 export default function Board() {
