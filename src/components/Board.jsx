@@ -48,6 +48,7 @@ export default function Board() {
   }
 
   return (
+    <>
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='lists' type='list' direction='horizontal'>
         {(provided) => 
@@ -58,5 +59,6 @@ export default function Board() {
         }
       </Droppable>
     </DragDropContext>
+    </>
   )
 }

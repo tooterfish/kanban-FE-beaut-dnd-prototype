@@ -13,7 +13,7 @@ const Container = styled.div`
   background: white;
   width: 200px;
   flex-direction: column;
-  min-height: 95%;
+  min-height: 80vh;
 `
 
 const Title = styled.h3`
@@ -34,7 +34,7 @@ const TaskList = styled.div`
   flex-direction: column;
   padding: 4px;
   margin: 4px;
-  min-height: 93%;
+  min-height: 90vh;
   background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
