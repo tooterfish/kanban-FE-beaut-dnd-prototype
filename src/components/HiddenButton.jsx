@@ -10,6 +10,7 @@ const Button = styled.button`
   position: fixed;
   transform: translate(4px, -22px);
   opacity: 20%;
+  transition: opacity 0.1s ease;
   &:hover {
     opacity: 100%;
     background-color: whitesmoke;

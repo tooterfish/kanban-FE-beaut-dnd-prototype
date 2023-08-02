@@ -12,14 +12,16 @@ const Container = styled.div`
   border: 1px solid lightgrey;
   background: white;
   width: 200px;
+
+  display: flex;
   flex-direction: column;
-  min-height: 80vh;
 `
 
 const Title = styled.h3`
   margin: 0px;
   padding: 8px;
   border-bottom: 1px solid lightgrey;
+  transition: background-color 0.2s ease;
   &:hover {
     background-color: lightgrey;
   }
@@ -31,14 +33,14 @@ const Title = styled.h3`
 
 const TaskList = styled.div`
   dispay: flex;
-  flex-direction: column;
   padding: 4px;
   margin: 4px;
-  min-height: 90vh;
+  flex-grow: 1;
   background-color: ${props => (props.$isDraggingOver ? 'whitesmoke' : 'white')}
 `
 
 const hiddenButtonStyleOverride = `
+  transition: 0.2s ease;
   opacity: 35%;
   &:hover {
     background-color: lightgrey;

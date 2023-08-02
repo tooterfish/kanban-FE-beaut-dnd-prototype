@@ -1,6 +1,23 @@
-import styled from 'styled-components'
-import { useContext } from 'react'
+import {styled, keyframes} from 'styled-components'
+import { useContext, useState, useEffect } from 'react'
 import { ModalContext } from '../contexts/ModalProvider'
+
+// const fadeIn = keyframes`
+//   0% { display: none; }
+//   50% { opacity: 0; }
+//   75% { opacity: 1; }
+//   100% { display: flex;}
+// `
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`
+
+const fadeOut = keyframes`
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+`
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -10,28 +27,36 @@ const ModalContainer = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
 
-  display: flex;
+  display: ${props => props.$display};
+
   justify-content: center;
   align-items: center;
-`
 
-const ModalContent = styled.div`
-  position: relative;
-  padding: 32px;
-  width: 100%;
-  max-width: 640px;
-  background-color: whitesmoke;
-`
+  &.shown {
+    animation: ${fadeIn} 0.1s linear;
+  }
+
+  &.hidden {
+    animation: ${fadeOut} 0.2s linear;
+  }
+
+  `
 
 export default function Modal() {
-  const {contents, setContents} = useContext(ModalContext)
+  const {contents} = useContext(ModalContext)
+  const [display, setDisplay] = useState('none')
 
-  return (contents) ? (
-    <ModalContainer>
-      <ModalContent>
-        {contents}
-      </ModalContent>
-    </ModalContainer>
-  )
-  : ''
+  useEffect(() => {
+    if (!contents) {
+      setTimeout(() => {
+        setDisplay('none')
+      }, 100)
+    } else {
+      setDisplay('flex')
+    }
+  }, [contents])
+
+  return <ModalContainer className={(contents) ? 'shown' : 'hidden'} $display={display}>
+    {contents}
+  </ModalContainer>
 }
