@@ -32,7 +32,7 @@ export default function Task({taskId, index}) {
     setContents(<SimpleTextboxModal 
       title={'Edit task'} 
       placeholder={task.content} 
-      cb={taskText => {
+      submitCallback={taskText => {
         const newTask = {...task, content: taskText}
         setTask(newTask) //update app
         data.tasks[taskId] = newTask //"persist" data here

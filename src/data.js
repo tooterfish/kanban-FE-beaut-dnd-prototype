@@ -9,14 +9,18 @@ const data = {
   lists: {
     'list-1': {
       id: 'list-1',
-      title: 'To do'
+      title: 'Backlog'
     },
     'list-2': {
       id: 'list-2',
-      title: 'In progress'
+      title: 'To Do'
     },
     'list-3': {
       id: 'list-3',
+      title: 'In progress'
+    },
+    'list-4': {
+      id: 'list-4',
       title: 'Done'
     }
   },
@@ -24,10 +28,11 @@ const data = {
   taskOrders: {
     'list-1': ['task-1', 'task-2', 'task-3', 'task-4'],
     'list-2': [],
-    'list-3': []
+    'list-3': [],
+    'list-4': []
   },
 
-  listOrder: ['list-1', 'list-2', 'list-3']
+  listOrder: ['list-1', 'list-2', 'list-3', 'list-4']
 }
 
 export default data

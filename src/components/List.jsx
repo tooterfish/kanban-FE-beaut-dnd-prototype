@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import data from '../data'
 import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import Task from './Task'
+import { ModalContext } from '../contexts/ModalProvider'
 
 import editIcon from '../assets/edit-box-line.svg'
 import HiddenButton from './HiddenButton'
+import SimpleTextboxModal from './SimpleTextboxModal'
+import Task from './Task'
 
 const Container = styled.div`
   margin: 8px;
@@ -49,9 +51,18 @@ const hiddenButtonStyleOverride = `
 
 export default function List({listId, taskOrder, index}) {
   const [list, setList] = useState(data.lists[listId])
+  const {contents, setContents} = useContext(ModalContext)
 
   function editList() {
-    console.log('edit list ' + listId)
+    setContents(<SimpleTextboxModal 
+      title={'Edit list title'} 
+      placeholder={list.title} 
+      submitCallback={listText => {
+        const newList = {...list, title: listText}
+        setList(newList) //update app
+        data.lists[listId] = newList //"persist" data here
+      }
+    }/>)
   }
 
   return (
