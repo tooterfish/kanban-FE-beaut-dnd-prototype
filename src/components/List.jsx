@@ -77,11 +77,9 @@ export default function List({listId, taskOrder, setTaskOrders, index}) {
 
         setTaskOrders((oldTaskOrders) => {
           const newTaskOrder = [...taskOrder]
-          newTaskOrder.push(newId)
-          console.log(newTaskOrder)
           const newTaskOrders = {...oldTaskOrders}
+          newTaskOrder.push(newId)
           newTaskOrders[listId] = newTaskOrder
-          console.log(newTaskOrders)
           return newTaskOrders
         })
       }
