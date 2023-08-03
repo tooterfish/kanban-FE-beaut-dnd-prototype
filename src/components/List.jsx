@@ -3,11 +3,13 @@ import data from '../data'
 import styled from 'styled-components'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { ModalContext } from '../contexts/ModalProvider'
+import { v4 } from 'uuid'
 
 import editIcon from '../assets/edit-box-line.svg'
 import HiddenButton from './HiddenButton'
 import SimpleTextboxModal from './SimpleTextboxModal'
 import Task from './Task'
+import AddButton from './AddButton'
 
 const Container = styled.div`
   margin: 8px;
@@ -49,7 +51,7 @@ const hiddenButtonStyleOverride = `
   }
 `
 
-export default function List({listId, taskOrder, index}) {
+export default function List({listId, taskOrder, setTaskOrders, index}) {
   const [list, setList] = useState(data.lists[listId])
   const {contents, setContents} = useContext(ModalContext)
 
@@ -61,6 +63,27 @@ export default function List({listId, taskOrder, index}) {
         const newList = {...list, title: listText}
         setList(newList) //update app
         data.lists[listId] = newList //"persist" data here
+      }
+    }/>)
+  }
+
+  function addNewTask() {
+    setContents(<SimpleTextboxModal 
+      title={'Add task'} 
+      placeholder={'Enter new task'} 
+      submitCallback={newTaskText => {
+        const newId = v4()
+        data.tasks[newId] = { id: newId, content: newTaskText }
+
+        setTaskOrders((oldTaskOrders) => {
+          const newTaskOrder = [...taskOrder]
+          newTaskOrder.push(newId)
+          console.log(newTaskOrder)
+          const newTaskOrders = {...oldTaskOrders}
+          newTaskOrders[listId] = newTaskOrder
+          console.log(newTaskOrders)
+          return newTaskOrders
+        })
       }
     }/>)
   }
@@ -89,6 +112,7 @@ export default function List({listId, taskOrder, index}) {
               >
                 {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
                 {provided.placeholder}
+                <AddButton text={'+ Add a task'} onClick={addNewTask}/>
               </TaskList>
             }
           </Droppable>

@@ -53,7 +53,14 @@ export default function Board() {
       <Droppable droppableId='lists' type='list' direction='horizontal'>
         {(provided) => 
           <Container ref={provided.innerRef} {...provided.droppableProps}>
-            {listOrder.map((listId, i) => { return <List key={listId} listId={listId} taskOrder={taskOrders[listId]} index={i}/>})}
+            {listOrder.map((listId, i) => { 
+              return <List 
+                key={listId} 
+                listId={listId} 
+                taskOrder={taskOrders[listId]} 
+                setTaskOrders={setTaskOrders}
+                index={i}/>})
+            }
             {provided.placeholder}
           </Container>
         }
