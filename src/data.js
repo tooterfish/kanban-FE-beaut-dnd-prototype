@@ -10,22 +10,18 @@ const data = {
     'list-1': {
       id: 'list-1',
       title: 'Backlog',
-      taskOrder: ['task-1', 'task-2', 'task-3', 'task-4']
     },
     'list-2': {
       id: 'list-2',
       title: 'To Do',
-      taskOrder: []
     },
     'list-3': {
       id: 'list-3',
       title: 'In progress',
-      taskOrder: []
     },
     'list-4': {
       id: 'list-4',
       title: 'Done',
-      taskOrder: []
     }
   },
 

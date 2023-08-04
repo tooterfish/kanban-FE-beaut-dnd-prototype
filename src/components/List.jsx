@@ -9,7 +9,7 @@ import editIcon from '../assets/edit-box-line.svg'
 import HiddenButton from './HiddenButton'
 import SimpleTextboxModal from './SimpleTextboxModal'
 import Task from './Task'
-import AddButton from './AddButton'
+import AddTaskButton from './AddTaskButton'
 
 const Container = styled.div`
   margin: 8px;
@@ -110,7 +110,7 @@ export default function List({listId, taskOrder, setTaskOrders, index}) {
               >
                 {taskOrder.map((taskId, i) => <Task key={taskId} taskId={taskId} index={i}/>)}
                 {provided.placeholder}
-                <AddButton text={'+ Add a task'} onClick={addNewTask}/>
+                <AddTaskButton onClick={addNewTask}/>
               </TaskList>
             }
           </Droppable>

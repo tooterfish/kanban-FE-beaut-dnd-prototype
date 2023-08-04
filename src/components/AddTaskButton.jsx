@@ -13,6 +13,6 @@ const Button = styled.button`
   }
 `
 
-export default function AddButton({text, onClick}) {
-  return <Button onClick={onClick}>{text}</Button>
+export default function AddButton({onClick}) {
+  return <Button onClick={onClick}>+ Add a task</Button>
 }
