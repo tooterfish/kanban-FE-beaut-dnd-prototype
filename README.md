@@ -1,8 +1,8 @@
-# React + Vite
+# Kanban Drag and Drop interface prototyping
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Link to Hosted Version
 
-Currently, two official plugins are available:
+## Project Summary
+Interface prototyping for a kanban app created using the react-beautiful-dnd library.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Users can add/edit tasks and lists, and move them them with either the mouse or the keyboard.
