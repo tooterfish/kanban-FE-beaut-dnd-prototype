@@ -1,8 +1,8 @@
-# Kanban Drag and Drop interface prototyping
+# Kanban Drag and Drop interface testing
 
 ### Link to Hosted Version
 
 ## Project Summary
-Interface prototyping for a kanban app created using the react-beautiful-dnd library.
+Front end prototyping for a kanban app created using the react-beautiful-dnd library.
 
-Users can add/edit tasks and lists, and move them them with either the mouse or the keyboard.
+Users can add/edit tasks and lists, and drag and drop them using either the mouse or the keyboard.
